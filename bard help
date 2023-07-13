@@ -1,0 +1,13 @@
+import requests
+from telebot import TeleBot
+
+bot = TeleBot("***")
+
+@bot.message_handler(commands=["ip"])
+def send_ip(message):
+    response = requests.get("https://api.ipify.org/")
+    ip_address = response.text
+
+    bot.send_message(@uid, ip_address)
+
+bot.polling()
